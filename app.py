@@ -195,7 +195,12 @@ else:
             groups = df_t[df_t['feature'] == 'group']
             if not groups.empty:
                 pivot = groups.pivot(index='category', columns='countable', values='value').reset_index()
-                fig = px.bar(pivot, x='category', y='bp', title="BP per Active Sample", color='bp')
+                fig = px.bar(pivot, x='category', y='bp', title="Total length (basepairs) per Active Sample", color='bp')
+                # Rename the x-axis and the y-axis labels
+                fig.update_layout(
+                    xaxis_title='Genomes',
+                    yaxis_title='Total Length (bp)'
+                )
                 st.plotly_chart(fig, use_container_width=True)
 
     with t_growth:
