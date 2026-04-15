@@ -166,7 +166,7 @@ else:
             df = df.drop(columns=cols_to_drop)
         active_registry[name] = {"df": df, "type": data['type']}
 
-    st.title("📊 Pangenome Analysis")
+    st.title("Pangenome Analysis Results Viewer")
     
     growth_files = [n for n, d in active_registry.items() if d['type'] == "panacus_growth"]
     table_files = [n for n, d in active_registry.items() if d['type'] == "panacus_table"]
@@ -210,7 +210,7 @@ else:
                 for c in plot_cols:
                     fig.add_trace(go.Scatter(x=df_g['Order'], y=df_g[c], name=f"Shared by ≥ {c}", mode='lines+markers'))
                 
-                fig.update_layout(xaxis_title="Genomes Added", yaxis_title="Cumulative BP", hovermode="x unified")
+                fig.update_layout(xaxis_title="Genomes Added", yaxis_title="Cumulative Length(basepair)", hovermode="x unified")
                 st.plotly_chart(fig, use_container_width=True)
 
     with t_nodes:
